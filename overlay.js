@@ -1,4 +1,23 @@
-const canvas = document.getElementById('overlay');
+navigator.geolocation.getCurrentPosition(
+  function (position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    console.log("📍 Your location:", lat, lon);
+
+    const canvas = document.getElementById('overlay');
+    const ctx = canvas.getContext('2d');
+
+    // Optional: scale or offset lat/lon if you want to map them
+    // For now just place the dot somewhere obvious
+    ctx.fillStyle = 'red';
+    ctx.beginPath();
+    ctx.arc(320, 240, 6, 0, Math.PI * 2);
+    ctx.fill();
+  },
+  function (error) {
+    console.error("❌ Location error:", error.message);
+  }
+);const canvas = document.getElementById('overlay');
 const ctx = canvas.getContext('2d');
 canvas.width = 640;
 canvas.height = 480;
